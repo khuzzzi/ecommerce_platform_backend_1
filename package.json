@@ -4,8 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon app.js",
-    "build": "npm install && npm install --prefix frontend/vite-project && npm run build --prefix frontend/vite-project"
+    "dev": "nodemon app.js"
   },
 
   "keywords": [],
