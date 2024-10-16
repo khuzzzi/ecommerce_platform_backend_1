@@ -16,7 +16,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 // CORS configuration
 const corsOptions = {
-    origin: "https://newnewfrontendecommerce-4gzr-2lergjyvw-khuzzzis-projects.vercel.app/",
+    origin: "https://newnewfrontendecommerce-4gzr-2lergjyvw-khuzzzis-projects.vercel.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
