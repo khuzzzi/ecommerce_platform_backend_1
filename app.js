@@ -14,7 +14,7 @@ dotenv.config();
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 
-// Middleware for CORS
+// CORS configuration
 const corsOptions = {
     origin: "https://newnewfrontendecommerce-4gzr-2lergjyvw-khuzzzis-projects.vercel.app",
     credentials: true,
@@ -22,16 +22,18 @@ const corsOptions = {
     allowedHeaders: ["Content-Type", "Authorization"],
 };
 
+// Apply CORS middleware before defining routes
 app.use(cors(corsOptions));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// Define routes
 app.use("/api/v1/buyer", buyerRoutes);
 app.use("/api/v1/seller", sellerRoutes);
 app.use("/api/v1/productacts", productRoutes);
 
+// Connect to MongoDB and start server
 mongoose.connect(MONGO_URI)
     .then(() => {
         console.log("MongoDB connected successfully");
