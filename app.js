@@ -25,7 +25,9 @@ mongoose.connect(MONGO_URI,{
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: "*", // Remove trailing slash
+    origin: ["https://newnewfrontendecommerce-4gzr.vercel.app",
+    "https://newnewfrontendecommerce-4gzr-git-main-khuzzzis-projects.vercel.app",
+    "https://newnewfrontendecommerce-4gzr-o6vev3yyi-khuzzzis-projects.vercel.app"], // Remove trailing slash
     credentials: true
 }));
 app.use(cookieParser())
