@@ -25,11 +25,10 @@ mongoose.connect(MONGO_URI,{
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-
-    origin: "https://newnewfrontendecommerce-4gzr.vercel.app/", // Remove trailing slash
-
+    origin: "https://newnewfrontendecommerce-4gzr.vercel.app",
     credentials: true
 }));
+
 app.use(cookieParser())
 
 app.use("/api/v1/buyer",buyerRoutes)
