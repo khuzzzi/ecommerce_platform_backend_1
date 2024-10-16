@@ -25,7 +25,7 @@ mongoose.connect(MONGO_URI,{
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: "https://ecommerce-platform-backend-ogt2oko7q-khuzzzis-projects.vercel.app",
+    origin: "https://newnewfrontendecommerce-4gzr.vercel.app/",
     credentials: true
 }));
 app.use(cookieParser())
