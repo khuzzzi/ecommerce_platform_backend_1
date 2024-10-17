@@ -1,48 +1,41 @@
-import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
-import buyerRoutes from "./routes/buyer.route.js";
-import sellerRoutes from "./routes/seller.route.js";
-import productRoutes from "./routes/productsActs.route.js";
+import express from "express"
+import mongoose from "mongoose"
+import dotenv from "dotenv"
+import cors from "cors"
+import buyerRoutes from "./routes/buyer.route.js"
+import sellerRoutes from "./routes/seller.route.js"
+import cookieParser from "cookie-parser"
+import productRoutes from "./routes/productsActs.route.js"
 
-const app = express();
 
-dotenv.config();
+const app = express()
 
-const PORT = process.env.PORT;
-const MONGO_URI = process.env.MONGO_URI;
+dotenv.config()
 
-// CORS middleware
-const allowCors = (fn) => async (req, res) => {
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', 'https://new-frontend-1-ecommerce-vercel-project.vercel.app');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+const PORT = process.env.PORT
+const MONGO_URI = process.env.MONGO_URI
 
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
-    }
-    return await fn(req, res);
-};
+app.listen(PORT,()=>{
+    console.log(`server started at ${PORT}`)
+})
 
-// Middleware setup
-app.use(express.json());
+mongoose.connect(MONGO_URI,{
+}).then(()=>{console.log("mongodb connected successfully")})
+    
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    
+    
+}));
 
-// MongoDB connection
-mongoose.connect(MONGO_URI)
-    .then(() => { console.log("MongoDB connected successfully"); })
-    .catch(err => { console.error("MongoDB connection error:", err); });
 
-// Use allowCors for your routes
-app.use("/api/v1/buyer", allowCors(buyerRoutes));
-app.use("/api/v1/seller", allowCors(sellerRoutes));
-app.use("/api/v1/productacts", allowCors(productRoutes));
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server started at ${PORT}`);
-});
+
+app.use(cookieParser())
+
+app.use("/api/v1/buyer",buyerRoutes)
+app.use("/api/v1/seller",sellerRoutes)
+app.use("/api/v1/productacts",productRoutes)
