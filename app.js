@@ -18,7 +18,7 @@ const MONGO_URI = process.env.MONGO_URI;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: "https://new-frontend-1-ecommerce-vercel-project.vercel.app/",
+    origin: "https://new-frontend-1-ecommerce-vercel-project.vercel.app",
     credentials: true,
 }));
 app.use(cookieParser());
