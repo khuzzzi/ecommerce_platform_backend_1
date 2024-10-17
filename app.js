@@ -21,6 +21,7 @@ app.use(cors({
     origin: "http://localhost:5173",
     credentials: true,
 }));
+<<<<<<< HEAD
 app.use(cookieParser());
 
 // MongoDB connection
@@ -40,3 +41,14 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 app.use("/api/v1/buyer", buyerRoutes);
 app.use("/api/v1/seller", sellerRoutes);
 app.use("/api/v1/productacts", productRoutes);
+=======
+
+
+
+
+app.use(cookieParser())
+
+app.use("/api/v1/buyer",buyerRoutes)
+app.use("/api/v1/seller",sellerRoutes)
+app.use("/api/v1/productacts",productRoutes)
+>>>>>>> ff2baca0898472bd49a865c8ec0e19dde6d13a9f
