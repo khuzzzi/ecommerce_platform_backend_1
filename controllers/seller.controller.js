@@ -153,7 +153,7 @@ export const showAllProducts = async(req,res)=>{
                 success : false
             })
         }
-
+        
         return res.status(200).json({
             msg : "here are all the products",
             success : true,
